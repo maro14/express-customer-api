@@ -7,7 +7,7 @@ const makeConnection = require('./config/database.js');
 const app = express()
 app.use(express.json())
 app.use(morgan('dev'))
-const PORT = 5000
+
 
 
 app.get('/',(req, res) => {
@@ -22,8 +22,8 @@ app.use('/user', userRouter)
 
 function init() {
     makeConnection()
-    app.listen(PORT)
-    console.log("Server on localhost", PORT);
+    app.listen(process.env.PORT)
+    console.log("Server on localhost 5000");
 }
 
 init()
