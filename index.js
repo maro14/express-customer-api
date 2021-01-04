@@ -1,11 +1,12 @@
 const express = require('express');
 
-
-const user = require('./models/user.js');
+const morgan = require('morgan');
+const userRouter = require('./routes/user');
 const makeConnection = require('./config/database.js');
 
 const app = express()
 app.use(express.json())
+app.use(morgan('dev'))
 const PORT = 5000
 
 
@@ -17,6 +18,7 @@ app.get('/member' ,(req, res) => {
     res.json({user: 'Bill'})
 })
 
+app.use('/user', userRouter)
 
 function init() {
     makeConnection()
