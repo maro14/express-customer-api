@@ -9,5 +9,6 @@ module.exports = {
         "ecmaVersion": 12
     },
     "rules": {
+        camelcase: 0
     }
 };
