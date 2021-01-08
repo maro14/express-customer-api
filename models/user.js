@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        require: true
-    },
-    age: {
-        type: Number,
-        require: true
-    }
+    name: { type: String },
+    
+    age: { type: Number }
 })
 
 const user = mongoose.model('user', UserSchema)
