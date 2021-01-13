@@ -8,7 +8,7 @@ const makeConnection = () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         }, () => {
-            console.log('Connected to db', db);
+            console.log('Connected to db',db);
         })
     }
     catch( err) {
