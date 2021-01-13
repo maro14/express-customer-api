@@ -13,12 +13,13 @@ app.use(morgan('dev'));
 
 
 
-app.get('/',(req, res) => {
+app.get('/', (req, res) => {
+    res.status(200)
     res.send('hello')
 })
 
 app.get('/member' ,(req, res) => {
-    res.json({user: 'Bill'})
+    res.json({user: '1234'})
 })
 
 app.use('/user', userRouter)
@@ -26,7 +27,7 @@ app.use('/user', userRouter)
 function init() {
     makeConnection()
     app.listen(process.env.PORT || 5000)
-    console.log("Server on localhost 5000");
+    console.log("Server on localhost: 5000");
 }
 
 init()

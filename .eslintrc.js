@@ -10,6 +10,6 @@ module.exports = {
         "ecmaVersion": 12
     },
     "rules": {
-        camelcase: 0
+        "semi": ["error", "always"]
     }
 };
