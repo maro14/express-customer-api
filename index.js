@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const userRouter = require('./routes/user');
 const makeConnection = require('./config/database.js');
 const dotenv = require('dotenv');
-dotenv.config({path: '.env'})
+dotenv.config({path: '.env'});
 
 
 const app = express();
@@ -14,20 +14,20 @@ app.use(morgan('dev'));
 
 
 app.get('/', (req, res) => {
-    res.status(200)
-    res.send('hello')
-})
+    res.status(200);
+    res.send('hello');
+});
 
 app.get('/member' ,(req, res) => {
-    res.json({user: '1234'})
-})
+    res.json({user: '1234'});
+});
 
-app.use('/user', userRouter)
+app.use('/user', userRouter);
 
 function init() {
-    makeConnection()
-    app.listen(process.env.PORT || 5000)
+    makeConnection();
+    app.listen(process.env.PORT || 5000);
     console.log("Server on localhost: 5000");
 }
 
-init()
+init();

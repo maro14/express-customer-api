@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-require('dotenv').config()
+require('dotenv').config();
 
 
 const makeConnection = () => {
@@ -9,12 +9,12 @@ const makeConnection = () => {
             useUnifiedTopology: true
         }, () => {
             console.log('Connected to db',db);
-        })
+        });
     }
     catch( err) {
         console.log('Database Not Found'+ err);
     }
 
-}
+};
 
 module.exports = makeConnection;
