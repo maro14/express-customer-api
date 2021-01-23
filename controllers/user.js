@@ -8,6 +8,17 @@ const crateuser = (req, res) => {
     console.log("Succeded");
 };
 
+const getusers = (req, res) => {
+    user.find()
+    .then(users => {
+        res.json({status:1 ,users});
+    }).catch(err => {
+        res.status(400).send(err);
+    });
+};
+
+
 module.exports = {
-    crateuser
+    crateuser,
+    getusers
 };
