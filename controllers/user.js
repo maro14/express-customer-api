@@ -1,11 +1,18 @@
 const user = require('../models/user');
 
 const crateuser = (req, res) => {
+    
     const name = req.body.name;
     const age = req.body.age;
-    user.create({name, age});
-    res.status(201).json(user);
-    console.log("Succeded");
+    
+    user.create({name, age})
+    .then(creates => {
+        res.status(201).json(creates);
+        console.log("User saved");
+    }).catch(err => {
+        res.status(404).send(err);
+    });
+    
 };
 
 const getusers = (req, res) => {
@@ -17,8 +24,60 @@ const getusers = (req, res) => {
     });
 };
 
+const getuser = (req, res) => {
+    user.findById({id: req.params.userId})
+    .then(user => {
+        res.json({status:1 , user});
+    }).catch(err => {
+        res.status(404).send(err);
+    });
+};
+
+const updateuser = (req, res) => {
+    if (!req.body.content) {
+        res.status(400).status({
+            message: 'Name can not be empty'
+        });
+    }
+    user.findByIdAndUpdate(req.params.userId, {
+        name :req.body.name || "untitled user",
+        age: req.body.age
+    }, {new: true})
+    .then(user => {
+        if (!user) {
+            return res.status(404).send({
+                message: 'name not found with id ' + req.params.userId
+            });
+        }
+        res.send(user);
+    }).catch(err => {
+        if (err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: 'Nothing found' + req.params.userId
+            });
+        }
+        return res.status(500).send({
+            message: 'Error updating name with id ' + req.params.userId
+        });
+    });
+};
+
+const deleteuser = (req, res) => {
+    const id = req.params.id;
+    user.findById(id).then((user) => {
+        user.remove(user.id);
+        res.status(200).send({
+            message: 'User has been deleted'
+        });
+    }).catch(err => {
+        console.log('',err);
+    });
+};
 
 module.exports = {
     crateuser,
-    getusers
+    getusers,
+    getuser,
+    updateuser,
+    deleteuser
 };
