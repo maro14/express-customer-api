@@ -12,15 +12,11 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 
-
 app.get('/', (req, res) => {
     res.status(200);
-    res.send('hello');
+    res.send('Welcome');
 });
 
-app.get('/member' ,(req, res) => {
-    res.json({user: '1234'});
-});
 
 app.use('/user', userRouter);
 
