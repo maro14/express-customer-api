@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
     res.status(200);
-    res.send('hello');
+    res.send('Welcome');
 });
 
 

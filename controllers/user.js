@@ -70,7 +70,11 @@ const deleteuser = (req, res) => {
             message: 'User has been deleted'
         });
     }).catch(err => {
-        console.log('',err);
+        res.status(500).send({
+            message: `Could not delete profile with id: ${id}`,
+            error: err.message
+        });
+        console.log('Error message',err);
     });
 };
 
