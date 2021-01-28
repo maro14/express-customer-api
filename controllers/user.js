@@ -8,7 +8,6 @@ const crateuser = (req, res) => {
     user.create({name, age})
     .then(creates => {
         res.status(201).json(creates);
-        console.log("User saved");
     }).catch(err => {
         res.status(404).send(err);
     });
