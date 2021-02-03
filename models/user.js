@@ -8,6 +8,6 @@ const UserSchema = new mongoose.Schema({
     age: { type: Number }
 });
 
-const user = mongoose.model('user', UserSchema);
+const User = mongoose.model('User', UserSchema);
 
-module.exports = user;
+module.exports = User;

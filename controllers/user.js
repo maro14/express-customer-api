@@ -1,11 +1,11 @@
-const user = require('../models/user');
+const User = require('../models/user');
 
 const crateuser = (req, res) => {
     
     const name = req.body.name;
     const age = req.body.age;
     
-    user.create({name, age})
+    User.create({name, age})
     .then(creates => {
         res.status(201).json(creates);
     }).catch(err => {
@@ -15,7 +15,7 @@ const crateuser = (req, res) => {
 };
 
 const getusers = (req, res) => {
-    user.find()
+    User.find()
     .then(users => {
         res.json({status:1 ,users});
     }).catch(err => {
@@ -24,7 +24,7 @@ const getusers = (req, res) => {
 };
 
 const getuser = (req, res) => {
-    user.findById({id: req.params.userId})
+    User.findById({id: req.params.userId})
     .then(user => {
         res.json({status:1 , user});
     }).catch(err => {
@@ -38,7 +38,7 @@ const updateuser = (req, res) => {
             message: 'Name can not be empty'
         });
     }
-    user.findByIdAndUpdate(req.params.userId, {
+    User.findByIdAndUpdate(req.params.userId, {
         name :req.body.name || "untitled user",
         age: req.body.age
     }, {new: true})
@@ -63,7 +63,7 @@ const updateuser = (req, res) => {
 
 const deleteuser = (req, res) => {
     const id = req.params.id;
-    user.findById(id).then((user) => {
+    User.findById(id).then((user) => {
         user.remove(user.id);
         res.status(200).send({
             message: 'User has been deleted'

@@ -3,6 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const userRouter = require('./routes/user');
+const productRouter = require('./routes/product');
 const makeConnection = require('./config/database.js');
 const dotenv = require('dotenv');
 dotenv.config({path: './config/.env'});
@@ -17,12 +18,13 @@ app.use(helmet());
 app.get('/', (req, res) => {
     res.status(200);
     res.send({
-        message: 'Welcome'
+        message: 'Welcome to demp'
     });
 });
 
 
 app.use('/user', userRouter);
+app.use('/product', productRouter);
 
 const PORT = process.env.PORT || 5000;
 
