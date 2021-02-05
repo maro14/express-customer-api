@@ -1,10 +1,15 @@
-const { json } = require('express');
 const Product = require('../models/product');
 
 const getProducts = (req, res) => {
-    const options = req.query;
-    const products = Product.paginate({}, options);
-    res,json(products);
+    const products = Product.paginate({},(err, docs) => {
+        if (err) {
+            res.status(404)
+            .json(products);
+        }
+        res.status(200)
+        .json(docs);
+    });
+    
 };
 
 module.exports = {
